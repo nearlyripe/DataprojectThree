@@ -121,7 +121,7 @@ print("Done")
 print("Saving Daily Change Graph")
 plt.figure(figsize=(40,40))
 plt.plot(dailyCases.n, dailyCases.CMODateCount)
-plt.figsize=(40, 10)
+plt.figsize=(40, 40)
 os.chdir(path+extension)
 plt.savefig(Current_Date + '_Daily_Change')
 plt.close();
@@ -134,7 +134,7 @@ print("Done")
 print("Saving Daily Case Graph")
 plt.figure(figsize=(40,40))
 plt.plot (dailyCases.n, dailyCases.CumCases)
-plt.figsize=(40, 10)
+plt.figsize=(40, 40)
 os.chdir(path+extension)
 plt.savefig(Current_Date + '_Daily_Cases')
 
@@ -372,7 +372,7 @@ for x in bigSet.Country.unique():
     PSx = plotSet[['n']].to_numpy()
     PSy = plotSet[['CumCases']].to_numpy()
     
-    dx = CHx[0] - PSx[0] + ((PSx[0] - PSx[0]) / 7)
+    dx = CHx[0] - PSx[0] + ((PSx[0] - PSx[0]) / 7) + 450
     dy = CHy[0] - PSy[0] + ((PSy[0] - PSy[0]) / 2)
 
     plt.figure(figsize=(20,20))
