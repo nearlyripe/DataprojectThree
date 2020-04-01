@@ -161,10 +161,10 @@ for x in bigSet.Country.unique():
     print(x + " has been plotted")
     
     plt.xticks(rotation = 45)
-    plt.xlim((0, 1200))
     os.chdir(path+extension)
     plt.savefig(Current_Date + '_Global_Graph')
-    os.chdir(home)
+plt.close()
+os.chdir(home)
     
 
 
@@ -183,7 +183,6 @@ for x in bigSet.Country.unique():
     print(x + " has been plotted")
     
     plt.xticks(rotation = 45)
-    plt.xlim((0, 1200))
     os.chdir(path+extension)
     plt.savefig(Current_Date + '_Global_Graph_cumulative')
     os.chdir(home)   
@@ -203,7 +202,6 @@ for x in bigSet.Country.unique():
     print(x + " has been plotted")
     plt.xticks(rotation = 45)
     os.chdir(path+extension)
-    plt.xlim((0, 1200))
     plt.savefig(Current_Date + '_' + x + '_cases')
     plt.close();
     os.chdir(home)
@@ -372,18 +370,23 @@ for x in bigSet.Country.unique():
     PSx = plotSet[['n']].to_numpy()
     PSy = plotSet[['CumCases']].to_numpy()
     
-    dx = CHx[0] - PSx[0] + ((PSx[0] - PSx[0]) / 7) + 450
-    dy = CHy[0] - PSy[0] + ((PSy[0] - PSy[0]) / 2)
+    dx = CHx[0] - PSx[0] + ((PSx[0] - PSx[0]) / 7) + 440
+    dy = CHy[0] - PSy[0] + ((PSy[0] - PSy[0]) / 2) 
 
-    plt.figure(figsize=(20,20))
-    plt.scatter(PSx, PSy)
-    plt.plot(CHx - dx, (logModel.predict(CHx) - dy)*popRatio )
+    try:
+        plt.figure(figsize=(20,20))
+        plt.scatter(PSx, PSy)
+        plt.plot(CHx - dx, (logModel.predict(CHx) - dy)*popRatio )
 
-    print(x + " has been plotted")
-    plt.xticks(rotation = 45)
-    plt.xlim((0, 1200))
-    os.chdir(path+extension)
-    plt.savefig(Current_Date + '_' + x + '_cases_forecasted')
+        print(x + " has been plotted")
+        plt.xticks(rotation = 45)
+        plt.xlim((0, 1200))
+        os.chdir(path+extension)
+        plt.savefig(Current_Date + '_' + x + '_cases_forecasted')
+    except:
+        print()
+    else:
+        print("Didn't work lol" + x)
     plt.close('all');
     
 os.chdir(home)
